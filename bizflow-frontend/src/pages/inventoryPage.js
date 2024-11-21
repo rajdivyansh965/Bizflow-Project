@@ -6,40 +6,15 @@ function InventoryPage() {
   const [itemName, setItemName] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
 
-  // Fetch data from localStorage when the component mounts
+  // Fetch items from the backend on component mount
   useEffect(() => {
-    const storedItems = JSON.parse(localStorage.getItem("skuItems")) || [];
-    setSkuItems(storedItems);
-  }, []); // Empty dependency array ensures this runs only once on component mount
+    fetch("http://localhost:5000/api/items")
+      .then((response) => response.json())
+      .then((data) => setSkuItems(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
-  // Save SKU items to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("skuItems", JSON.stringify(skuItems));
-  }, [skuItems]); // Dependency on skuItems ensures this updates correctly
-
-const addSkuItem = (e) => {
-  e.preventDefault();
-  if (!itemName || !itemQuantity) {
-    alert("Both fields are required!");
-    return;
-  }
-
-  const newItem = { name: itemName, quantity: itemQuantity };
-
-  fetch("http://localhost:5000/api/items", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newItem),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      setSkuItems([...skuItems, data]);
-      setItemName("");
-      setItemQuantity("");
-    })
-    .catch((error) => console.error("Error adding item:", error));
-};
-  
+  // Add a new item via the backend
   const addSkuItem = (e) => {
     e.preventDefault();
     if (!itemName || !itemQuantity) {
@@ -48,9 +23,19 @@ const addSkuItem = (e) => {
     }
 
     const newItem = { name: itemName, quantity: itemQuantity };
-    setSkuItems([...skuItems, newItem]);
-    setItemName("");
-    setItemQuantity("");
+
+    fetch("http://localhost:5000/api/items", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newItem),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setSkuItems([...skuItems, data]); // Update state with the new item
+        setItemName("");
+        setItemQuantity("");
+      })
+      .catch((error) => console.error("Error adding item:", error));
   };
 
   return (
