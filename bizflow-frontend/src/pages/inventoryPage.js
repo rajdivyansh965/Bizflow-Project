@@ -17,6 +17,29 @@ function InventoryPage() {
     localStorage.setItem("skuItems", JSON.stringify(skuItems));
   }, [skuItems]); // Dependency on skuItems ensures this updates correctly
 
+const addSkuItem = (e) => {
+  e.preventDefault();
+  if (!itemName || !itemQuantity) {
+    alert("Both fields are required!");
+    return;
+  }
+
+  const newItem = { name: itemName, quantity: itemQuantity };
+
+  fetch("http://localhost:5000/api/items", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newItem),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setSkuItems([...skuItems, data]);
+      setItemName("");
+      setItemQuantity("");
+    })
+    .catch((error) => console.error("Error adding item:", error));
+};
+  
   const addSkuItem = (e) => {
     e.preventDefault();
     if (!itemName || !itemQuantity) {
