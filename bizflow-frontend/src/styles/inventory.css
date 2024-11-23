@@ -1,141 +1,106 @@
-/* Overall container styling */
+/* inventory.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
 .inventory-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid #e0e0e0;
+  width: 90%;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-/* Page headings */
-.inventory-container h1 {
-    font-size: 28px;
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 20px;
+h1 {
+  text-align: center;
+  color: #444;
 }
 
-.inventory-container h2 {
-    font-size: 22px;
-    color: #34495e;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-/* Inventory form styling */
 .inventory-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
-/* Input fields styling */
 .form-group {
-    flex: 1 1 calc(50% - 20px);
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 15px;
 }
 
-.form-group label {
-    font-weight: 600;
-    font-size: 14px;
-    color: #2c3e50;
-    margin-bottom: 8px;
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.form-group input {
-    padding: 12px;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    font-size: 16px;
-    color: #2c3e50;
-    transition: all 0.3s ease;
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.form-group input:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-    outline: none;
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #aaa;
 }
 
-/* Add button styling */
 .add-button {
-    flex: 1 1 100%;
-    padding: 14px 20px;
-    background: #3498db;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .add-button:hover {
-    background: #2980b9;
-    box-shadow: 0 4px 12px rgba(41, 128, 185, 0.4);
+  background-color: #218838;
 }
 
-/* SKU List Table Styling */
+h2 {
+  margin-top: 40px;
+  color: #444;
+}
+
 .sku-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .sku-table th,
 .sku-table td {
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 14px;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
 
 .sku-table th {
-    background-color: #34495e;
-    color: white;
-    font-weight: 700;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
-.sku-table tbody tr {
-    border-bottom: 1px solid #dcdcdc;
+.sku-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-.sku-table tbody tr:hover {
-    background: rgba(52, 152, 219, 0.1);
+.sku-table tr:hover {
+  background-color: #f1f1f1;
 }
 
-.sku-table tbody tr:nth-child(odd) {
-    background: #f5f5f5;
-}
-
-/* For the last row border fix */
-.sku-table tbody tr:last-child {
-    border-bottom: none;
-}
-
-/* Responsive design for small screens */
-@media screen and (max-width: 768px) {
-    .inventory-container {
-        padding: 20px;
-    }
-
-    .form-group {
-        flex: 1 1 100%;
-    }
-
-    .sku-table th,
-    .sku-table td {
-        font-size: 13px;
-    }
+p {
+  text-align: center;
+  font-style: italic;
+  color: #777;
 }
